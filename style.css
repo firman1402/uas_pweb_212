@@ -16,7 +16,7 @@ h1 {
 }
 
 .kotak_login {
-   width: 350px;
+   width: 1000px;
    background: white;
    /*meletakkan form ke tengah*/
    margin: 80px auto;
@@ -25,6 +25,14 @@ h1 {
 
 .kotak_pesan {
    width: 350px;
+   background: white;
+   /*meletakkan form ke tengah*/
+   margin: 80px auto;
+   padding: 30px 20px;
+}
+
+.kotak_input {
+   width: 600px;
    background: white;
    /*meletakkan form ke tengah*/
    margin: 80px auto;

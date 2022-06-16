@@ -110,7 +110,7 @@
             <td><?php echo number_format($row['harga']); ?></td>
             <td><?php echo $row['tahun_mobil']; ?></td>
             <td>
-               <a href="update.php?no=<?php echo $row['no']; ?>">Ubah</a> &nbsp;&nbsp; <a href="">Hapus</a>
+               <a href="update.php?no=<?php echo $row['no']; ?>" class="btn btn-success">Ubah</a> &nbsp;&nbsp; <a href="hapus.php?no=<?php echo $row['no']; ?>" class="btn btn-outline-danger">Hapus</a>
             </td>
          </tr>
       <?php

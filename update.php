@@ -1,3 +1,6 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"> </script>
+<link rel="stylesheet" type="text/css" href="style.css">
 <?php
 include 'koneksi.php';
 // menampilkan data tersimpan
@@ -25,7 +28,8 @@ $data = mysqli_fetch_array($query);
       </tr>
       <tr>
          <td>
-            <input type="submit" name="tambah" value="Ganti">
+            <input type="submit" name="tambah" value="Ganti" class="btn btn-success">
+            <a href="admin.php" class="btn btn-outline-danger">Kembali</a>
          </td>
       </tr>
    </table>

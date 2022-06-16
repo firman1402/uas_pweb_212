@@ -8,12 +8,9 @@
 </head>
 
 <body>
-   <h2>
-      <center>Form Login</center>
-   </h2>
-
-   <div class="kotak_login">
-      <p class="tulisan_login">Silahkan login</p>
+   <div class="col-3 kotak_login">
+      <center><img src="asset/mobil3.png" alt="gambar mobil" height="150" width="150"></center>
+      <p class="tulisan_login">Penyewaan Mobiel</p>
 
       <form method="POST" action="ceklogin.php">
          <label>Username</label>
@@ -22,13 +19,15 @@
          <label>Password</label>
          <input type="password" name="password" class="form_login" placeholder="Password ..">
 
+         <label>Hak akses</label>
+         <input type="password" name="hak_akses" class="form_login" placeholder="Khusus admin">
+
          <input type="submit" class="tombol_login" value="LOGIN">
          <br />
          <p> Belum punya akun?
             <a href="register.php">Daftar di sini</a>
          </p>
       </form>
-
    </div>
 
    <div class="kotak_pesan">
