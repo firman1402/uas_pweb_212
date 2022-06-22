@@ -14,13 +14,10 @@
 
       <form method="POST" action="ceklogin.php">
          <label>Username</label>
-         <input type="text" name="username" class="form_login" placeholder="Username ..">
+         <input type="text" name="username" class="form_login" placeholder="Username .." required>
 
          <label>Password</label>
-         <input type="password" name="password" class="form_login" placeholder="Password ..">
-
-         <label>Hak akses</label>
-         <input type="password" name="hak_akses" class="form_login" placeholder="Khusus admin">
+         <input type="password" name="password" class="form_login" placeholder="Password .." required>
 
          <input type="submit" class="tombol_login" value="LOGIN">
          <br />

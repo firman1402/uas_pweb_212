@@ -12,5 +12,5 @@ if (!$hasil_query) {
    die("Gagal menghapus data: " . mysqli_errno($koneksi) .
       " - " . mysqli_error($koneksi));
 } else {
-   echo "<script>alert('Data berhasil dihapus.');window.location='admin.php';</script>";
+   echo "<script>alert('Data berhasil dihapus.');window.location='jenis_mobil.php';</script>";
 }
