@@ -1,3 +1,8 @@
+<!-- cek apakah sudah login -->
+<?php
+require 'koneksi.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,19 +18,12 @@
 
    <br />
 
-   <!-- cek apakah sudah login -->
-   <?php
-   session_start();
-   if ($_SESSION['status'] != "login") {
-      header("location:index.php?pesan=belum_login");
-   }
-   ?>
 
-   <h4>Selamat datang, <?php echo $_SESSION['username']; ?>! anda telah login.</h4>
+   <h4>Selamat datang, <?php echo $_SESSION['user']; ?>! anda telah login.</h4>
 
    <br />
    <br />
-   <a href="logout.php" type="submit" class="tombol_login">
+   <a href="../logout.php" type="submit" class="tombol_login">
       <center>LOG OUT</center>
    </a>
 

@@ -35,21 +35,21 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                </li>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="">Tempat Jualan</a>
+                  <a class="nav-link" href="#">Penyewaan</a>
                </li>
             </ul>
-            <div class="dropdown pb-4">
-               <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                  <span class="d-none d-sm-inline mx-1"><?php echo $_SESSION['username']; ?></span>
-               </a>
-               <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-
-                  <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+            <div class="dropdown">
+               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <?php echo $_SESSION['username']; ?>
+               </button>
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="logout.php">Sign Out</a></li>
                </ul>
             </div>
             </form>
          </div>
+         </form>
+      </div>
       </div>
    </nav>
    <div style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
@@ -65,15 +65,15 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                   </div>
                   <div class="form-group">
                      <label>Nama Mobil</label>
-                     <input type="text" name="nama_mobil" class="form-control">
+                     <input type="text" name="nama_mobil" class="form-control" autocomplete="off" required>
                   </div>
                   <div class="form-group">
                      <label>Harga Penyewaan</label>
-                     <input type="text" name="harga" class="form-control">
+                     <input type="text" name="harga" class="form-control" autocomplete="off" required>
                   </div>
                   <div class="form-group">
                      <label>Tahun Mobil</label>
-                     <input type="text" name="tahun_mobil" class="form-control">
+                     <input type="text" name="tahun_mobil" class="form-control" autocomplete="off" required>
                   </div>
                </form>
 

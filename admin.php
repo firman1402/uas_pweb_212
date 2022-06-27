@@ -1,3 +1,7 @@
+<?php
+require 'koneksi.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -9,7 +13,6 @@
 </head>
 
 <body>
-   <?php session_start(); ?>
    <!-- navbar -->
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -27,17 +30,15 @@
                </li>
                </li>
                <li class="nav-item">
-                  <a class="nav-link" href="">Tempat Jualan</a>
+                  <a class="nav-link" href="#">Penyewaan</a>
                </li>
             </ul>
-            <div class="dropdown pb-4">
-               <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                  <span class="d-none d-sm-inline mx-1"><?php echo $_SESSION['username']; ?></span>
-               </a>
-               <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-
-                  <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+            <div class="dropdown">
+               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <?php echo $_SESSION['user']; ?>
+               </button>
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="logout.php">Sign Out</a></li>
                </ul>
             </div>
             </form>

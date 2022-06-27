@@ -1,24 +1,28 @@
 <?php
-// mengaktifkan session php
+require 'koneksi.php';
 session_start();
 
-// menghubungkan dengan koneksi
-include 'koneksi.php';
+$user = $_POST['username'];
+$pass = $_POST['password'];
 
-// menangkap data yang dikirim dari form
-$username = $_POST['username'];
-$password = $_POST['password'];
+$query = mysqli_query($koneksi, "SELECT *  FROM guest WHERE username = '$user' AND password = '$pass'");
 
-// menyeleksi data admin dengan username dan password yang sesuai
-$data = mysqli_query($koneksi, "select * from guest where username='$username' and password='$password'");
+$result = mysqli_num_rows($query);
 
-// menghitung jumlah data yang ditemukan
-$cek = mysqli_num_rows($data);
-
-if ($cek > 0) {
-   $_SESSION['username'] = $username;
-   $_SESSION['status'] = "login";
-   header("location:admin.php");
-} else {
-   header("location:index.php?pesan=gagal");
+if ($result > 0) {
+   $data = mysqli_fetch_assoc($query);
+   // cek level user(admin/user)
+   if ($data['hak_akses'] == "admin") {
+      $_SESSION['user'] = $data['username'];
+      $_SESSION['hak_akses'] = "admin";
+      // tentukan halaman yg di ases admin
+      header("Location:admin.php");
+   } elseif ($data['hak_akses'] == "user") {
+      $_SESSION['user'] = $data['username'];
+      $_SESSION['hak_akses'] = "user";
+      // tentukan halaman yg di ases admin
+      header("Location:user/guest.php");
+   } else {
+      header("location:index.php?pesan=gagal");
+   }
 }

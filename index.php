@@ -14,7 +14,7 @@
 
       <form method="POST" action="ceklogin.php">
          <label>Username</label>
-         <input type="text" name="username" class="form_login" placeholder="Username .." required>
+         <input type="text" name="username" class="form_login" placeholder="Username .." required autocomplete="off">
 
          <label>Password</label>
          <input type="password" name="password" class="form_login" placeholder="Password .." required>
