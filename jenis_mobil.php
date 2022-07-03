@@ -2,6 +2,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"> </script>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script language="Javascript">
+   function deleteask() {
+      if (confirm('Anda yakin akan logout?')) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+</script>
 <?php
 include 'Koneksi.php';
 ?>
@@ -43,7 +52,7 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                   <?php echo $_SESSION['username']; ?>
                </button>
                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="logout.php">Sign Out</a></li>
+                  <li><a class="dropdown-item" href="logout.php" onClick="return deleteask();">Sign Out</a></li>
                </ul>
             </div>
             </form>
@@ -79,6 +88,10 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                      <label>Tahun Mobil</label>
                      <input type="text" name="tahun_mobil" class="form-control" autocomplete="off" required>
                   </div>
+                  <div class="form-group">
+                     <label>Status</label>
+                     <input type="text" name="status" class="form-control" autocomplete="off" required>
+                  </div>
                </form>
 
             </div>
@@ -97,7 +110,7 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
          include 'Koneksi.php';
 
          $simpan = mysqli_query($koneksi, "insert into jenis_mobil values ('" . $_POST['no'] . "',
-        '" . $_POST['nama_mobil'] . "','" . $_POST['harga'] . "','" . $_POST['plat_nomor'] . "','" . $_POST['tahun_mobil'] . "');");
+        '" . $_POST['nama_mobil'] . "','" . $_POST['harga'] . "','" . $_POST['plat_nomor'] . "','" . $_POST['tahun_mobil'] . "','" . $_POST['status'] . "');");
          if ($simpan == 1) {
             echo '<script type="text/javascript">
             alert("Data Tersimpan");
@@ -135,10 +148,11 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
             <th>HARGA PENYEWAAN</th>
             <th>PLAT NOMOR</th>
             <th>TAHUN MOBIL</th>
+            <th>STATUS</th>
             <th>AKSI</th>
          </tr>
          <?php
-         if (empty($mahasiswa)) {
+         if (empty($mobil)) {
          }
          ?>
 
@@ -158,6 +172,7 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                <td><?php echo number_format($row['harga']); ?></td>
                <td><?php echo $row['plat_nomor']; ?></td>
                <td><?php echo $row['tahun_mobil']; ?></td>
+               <td><?php echo $row['status']; ?></td>
                <td>
                   <a href="update.php?no=<?php echo $row['no']; ?>" class="btn btn-success">Ubah</a> &nbsp;&nbsp; <a href="hapus.php?no=<?php echo $row['no']; ?>" class="btn btn-outline-danger">Hapus</a>
                </td>
