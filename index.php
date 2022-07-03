@@ -14,10 +14,10 @@
 
       <form method="POST" action="ceklogin.php">
          <label>Username</label>
-         <input type="text" name="username" class="form_login" placeholder="Username .." required autocomplete="off">
+         <input type="text" name="username" class="form_login" placeholder="Username .." autocomplete="off">
 
          <label>Password</label>
-         <input type="password" name="password" class="form_login" placeholder="Password .." required>
+         <input type="password" name="password" class="form_login" placeholder="Password ..">
 
          <input type="submit" class="tombol_login" value="LOGIN">
          <br />
@@ -26,21 +26,18 @@
          </p>
       </form>
    </div>
-
-   <div class="kotak_pesan">
-      <!-- cek pesan notifikasi -->
-      <?php
-      if (isset($_GET['pesan'])) {
-         if ($_GET['pesan'] == "gagal") {
-            echo "Login gagal! username dan password salah!";
-         } else if ($_GET['pesan'] == "logout") {
-            echo "Anda telah berhasil logout";
-         } else if ($_GET['pesan'] == "belum_login") {
-            echo "Anda harus login untuk mengakses halaman admin";
-         }
+   <!-- cek pesan notifikasi -->
+   <?php
+   if (isset($_GET['pesan'])) {
+      if ($_GET['pesan'] == "gagal") {
+         echo "<script>alert('Username dan password salah, harap di ulangi!');window.location='index.php';</script>";
+      } else if ($_GET['pesan'] == "logout") {
+         echo "<script>alert('Anda berhasil logout');window.location='index.php';</script>";
+      } else if ($_GET['pesan'] == "belum_login") {
+         echo "<script>alert('Anda belum login');window.location='index.php';</script>";
       }
-      ?>
-   </div>
+   }
+   ?>
 
 
 </body>

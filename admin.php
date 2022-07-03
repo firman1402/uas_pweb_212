@@ -7,6 +7,15 @@ session_start();
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"> </script>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script language="Javascript">
+   function deleteask() {
+      if (confirm('Anda yakin akan logout?')) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+</script>
 
 <head>
    <title>Form admin</title>
@@ -35,10 +44,10 @@ session_start();
             </ul>
             <div class="dropdown">
                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <?php echo $_SESSION['user']; ?>
+                  <?php echo $_SESSION['username']; ?>
                </button>
                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="logout.php">Sign Out</a></li>
+                  <li><a class="dropdown-item" href="logout.php" onClick="return deleteask();">Sign Out</a></li>
                </ul>
             </div>
             </form>
@@ -48,27 +57,40 @@ session_start();
    <div style="padding-top:20px">
       <h1>Halaman Admin Awal</h1>
    </div>
-   <section>
-      <div class="card-group ms-5 mt-5" style="width: 700px">
-         <div class="card">
-            <img src="asset/avanza.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-               <h5 class="card-title">Avanza 2019</h5>
-               <p class="card-text">300.000 / Hari</p>
-               <p>Avanza tahun 2019 memiliki kelebihan dan kekurangan...</p>
-               <a href="https://www.ortizaku.com/index.php/Otomotif/review-spesifikasi-harga-kelebihan-dan-kekurangan-avanza-2019" class="btn btn-primary">Baca lebih lanjut..</a>
-            </div>
-         </div>
-         <div class="card ms-4">
-            <img src="asset/innova.png" class="card-img-top" alt="...">
-            <div class="card-body">
-               <h5 class="card-title">Innova 2019</h5>
-               <p class="card-text">450.000 / Hari</p>
-               <p>Innova tahun 2019 memiliki kelebihan dan kekurangan...</p>
-               <a href="https://www.carmudi.co.id/journal/spesifikasi-dan-harga-toyota-kijang-innova-reborn-bekas-di-jakarta/" class="btn btn-primary">Baca lebih lanjut..</a>
-            </div>
-         </div>
-   </section>
+   <div class="alert alert-success" role="alert">
+      selamat datang,
+      <?php echo $_SESSION['username']; ?> !
+   </div>
+   <div class="col-sm-10" style="padding-top: 20px; padding-bottom: 20px; padding-left: 50px;">
+      <h2>Daftar User yang mendaftar</h2>
+      <table class="table table-striped table-hover dtabel">
+         <tr>
+            <th>ID</th>
+            <th>USERNAME</th>
+            <th>PASSWORD</th>
+            <th>NO TELPON</th>
+            <th>HAK AKSES</th>
+            <th>AKSI</th>
+         </tr>
+         <?php
+         $list = mysqli_query($koneksi, "select * from guest");
+         while ($row = mysqli_fetch_array($list)) {
+         ?>
+            <tr>
+               <td><?php echo $row['id']; ?></td>
+               <td><?php echo $row['username']; ?></td>
+               <td><?php echo $row['password']; ?></td>
+               <td><?php echo $row['no_telp']; ?></td>
+               <td><?php echo $row['hak_akses']; ?></td>
+               <td>
+                  <a href="hapususer.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">HAPUS</a>
+               </td>
+            </tr>
+         <?php
+         }
+         ?>
+      </table>
+   </div>
 
 
 

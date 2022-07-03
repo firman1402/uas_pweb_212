@@ -72,6 +72,10 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                      <input type="text" name="harga" class="form-control" autocomplete="off" required>
                   </div>
                   <div class="form-group">
+                     <label>Plat nomor</label>
+                     <input type="text" name="plat_nomor" class="form-control" autocomplete="off" required>
+                  </div>
+                  <div class="form-group">
                      <label>Tahun Mobil</label>
                      <input type="text" name="tahun_mobil" class="form-control" autocomplete="off" required>
                   </div>
@@ -93,7 +97,7 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
          include 'Koneksi.php';
 
          $simpan = mysqli_query($koneksi, "insert into jenis_mobil values ('" . $_POST['no'] . "',
-        '" . $_POST['nama_mobil'] . "','" . $_POST['harga'] . "','" . $_POST['tahun_mobil'] . "');");
+        '" . $_POST['nama_mobil'] . "','" . $_POST['harga'] . "','" . $_POST['plat_nomor'] . "','" . $_POST['tahun_mobil'] . "');");
          if ($simpan == 1) {
             echo '<script type="text/javascript">
             alert("Data Tersimpan");
@@ -108,25 +112,51 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
       }
       ?>
    </div>
+   <div style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
+      <form action="jenis_mobil.php" method="get">
+         <label>Cari :</label>
+         <input type="text" name="cari" autocomplete="off">
+         <input type="submit" value="Cari">
+      </form>
 
-   <div class="col-sm-8" style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
+      <?php
+      if (isset($_GET['cari'])) {
+         $cari = $_GET['cari'];
+         echo "<b>Hasil pencarian : " . $cari . "</b>";
+      }
+      ?>
+   </div>
+   <div class="col-sm-11" style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
       <h2>Jenis Mobil</h2>
       <table class="table table-striped table-hover dtabel">
          <tr>
             <th>KODE MOBIL</th>
             <th>NAMA MOBIL</th>
             <th>HARGA PENYEWAAN</th>
+            <th>PLAT NOMOR</th>
             <th>TAHUN MOBIL</th>
             <th>AKSI</th>
          </tr>
          <?php
-         $list = mysqli_query($koneksi, "select * from jenis_mobil");
-         while ($row = mysqli_fetch_array($list)) {
+         if (empty($mahasiswa)) {
+         }
+         ?>
+
+         <?php
+         if (isset($_GET['cari'])) {
+            $cari = $_GET['cari'];
+            $query = mysqli_query($koneksi, "select * from jenis_mobil where nama_mobil like '%" . $cari . "%'");
+         } else {
+            $query = mysqli_query($koneksi, "select * from jenis_mobil ");
+         }
+         $i = 1;
+         while ($row = mysqli_fetch_array($query)) {
          ?>
             <tr>
                <td><?php echo $row['no']; ?></td>
                <td><?php echo $row['nama_mobil']; ?></td>
                <td><?php echo number_format($row['harga']); ?></td>
+               <td><?php echo $row['plat_nomor']; ?></td>
                <td><?php echo $row['tahun_mobil']; ?></td>
                <td>
                   <a href="update.php?no=<?php echo $row['no']; ?>" class="btn btn-success">Ubah</a> &nbsp;&nbsp; <a href="hapus.php?no=<?php echo $row['no']; ?>" class="btn btn-outline-danger">Hapus</a>

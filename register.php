@@ -11,11 +11,10 @@ if (isset($_POST['submit'])) {
    // menghilangkan backshlases
    $username = stripslashes($_POST['username']);
    //cara sederhana mengamankan dari sql injection
-   $username = mysqli_real_escape_string($koneksi, $username);
    $password = stripslashes($_POST['password']);
-   $password = mysqli_real_escape_string($koneksi, $password);
    $repass   = stripslashes($_POST['repassword']);
-   $repass   = mysqli_real_escape_string($koneksi, $repass);
+   $no_telp   = $_POST['no_telp'];
+   $hak_akses = $_POST['hak_akses'];
    //cek apakah nilai yang diinputkan pada form ada yang kosong atau tidak
    if (!empty(trim($username)) && !empty(trim($password)) && !empty(trim($repass))) {
       //mengecek apakah password yang diinputkan sama dengan re-password yang diinputkan kembali
@@ -23,9 +22,9 @@ if (isset($_POST['submit'])) {
          //memanggil method cek_nama untuk mengecek apakah user sudah terdaftar atau belum
          if (cek_nama($name, $koneksi) == 0) {
             //hashing password sebelum disimpan didatabase
-            $pass  = password_hash($password, PASSWORD_DEFAULT);
+            $pass  = $password;
             //insert data ke database
-            $query = "INSERT INTO guest (username, password ) VALUES ('$username','$pass')";
+            $query = "INSERT INTO guest (username, password, no_telp,hak_akses ) VALUES ('$username','$pass','$no_telp','$hak_akses')";
             $result   = mysqli_query($koneksi, $query);
             //jika insert data berhasil maka akan diredirect ke halaman index.php serta menyimpan data username ke session
             if ($result) {
@@ -85,7 +84,7 @@ function cek_nama($username, $koneksi)
                <?php } ?>
                <div class="form-group">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username">
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" autocomplete="off">
                </div>
                <div class="form-group">
                   <label for="InputPassword">Password</label>
@@ -100,6 +99,17 @@ function cek_nama($username, $koneksi)
                   <?php if ($validate != '') { ?>
                      <p class="text-danger"><?= $validate; ?></p>
                   <?php } ?>
+               </div>
+               <div class="form-group">
+                  <label for="username">No Telepon</label>
+                  <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan no Telepon" autocomplete="off">
+               </div>
+               <div class="form-group">
+                  <span><i class="fa fa-cog fa-fw"></i></span> <select name="hak_akses" required>
+                     <option value="">Hak akses</option>
+                     <option value="1">user</option>
+                     <option value="2">admin</option>
+                  </select>
                </div>
                <button type="submit" name="submit" class="btn btn-primary btn-block">Register</button>
                <div class="form-footer mt-2">
