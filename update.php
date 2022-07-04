@@ -25,8 +25,16 @@ $data = mysqli_fetch_array($query);
             <td><input type="text" name="harga" value="<?php echo $data['harga']; ?>"></td>
          </tr>
          <tr>
+            <td><b>PLAT NOMOR</b></td>
+            <td><input type="text" name="plat_nomor" value="<?php echo $data['plat_nomor']; ?>"></td>
+         </tr>
+         <tr>
             <td><b>TAHUN MOBIL</b></td>
             <td><input type="text" name="tahun_mobil" value="<?php echo $data['tahun_mobil']; ?>"></td>
+         </tr>
+         <tr>
+            <td><b>STATUS</b></td>
+            <td><input type="text" name="status" value="<?php echo $data['status']; ?>"></td>
          </tr>
          <tr>
             <td>

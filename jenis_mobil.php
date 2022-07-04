@@ -88,42 +88,44 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                      <label>Tahun Mobil</label>
                      <input type="text" name="tahun_mobil" class="form-control" autocomplete="off" required>
                   </div>
-                  <div class="form-group">
-                     <label>Status</label>
-                     <input type="text" name="status" class="form-control" autocomplete="off" required>
-                  </div>
-               </form>
-
+                  <label>Status</label>
+                  <select class="form-select" name="status">
+                     <option selected value="Tersedia" name="status">Tersedia</option>
+                     <option value="Tidak Tersedia" name="status">Tidak Tersedia</option>
+                  </select>
             </div>
-            <br />
-            <tr>
-               <td>
-                  <input type="submit" value="Simpan" class="btn btn-success" name="btnSimpan">
-                  <input type="reset" value="Batal" class="btn btn-danger" name="btnBatal">
-               </td>
-            </tr>
-         </table>
       </form>
 
-      <?php
-      if (isset($_POST['btnSimpan'])) {
-         include 'Koneksi.php';
+   </div>
+   <br />
+   <tr>
+      <td>
+         <input type="submit" value="Simpan" class="btn btn-success" name="btnSimpan">
+         <input type="reset" value="Batal" class="btn btn-danger" name="btnBatal">
+      </td>
+   </tr>
+   </table>
+   </form>
 
-         $simpan = mysqli_query($koneksi, "insert into jenis_mobil values ('" . $_POST['no'] . "',
+   <?php
+   if (isset($_POST['btnSimpan'])) {
+      include 'Koneksi.php';
+
+      $simpan = mysqli_query($koneksi, "insert into jenis_mobil values ('" . $_POST['no'] . "',
         '" . $_POST['nama_mobil'] . "','" . $_POST['harga'] . "','" . $_POST['plat_nomor'] . "','" . $_POST['tahun_mobil'] . "','" . $_POST['status'] . "');");
-         if ($simpan == 1) {
-            echo '<script type="text/javascript">
+      if ($simpan == 1) {
+         echo '<script type="text/javascript">
             alert("Data Tersimpan");
             window.location.href = "jenis_mobil.php";
             </script>';
-         } else {
-            echo '<script type="text/javascript">
+      } else {
+         echo '<script type="text/javascript">
             alert("Data Gagal Tersimpan");
             window.location.href = "jenis_mobil.php";
             </script>';
-         }
       }
-      ?>
+   }
+   ?>
    </div>
    <div style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
       <form action="jenis_mobil.php" method="get">
@@ -174,7 +176,63 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                <td><?php echo $row['tahun_mobil']; ?></td>
                <td><?php echo $row['status']; ?></td>
                <td>
-                  <a href="update.php?no=<?php echo $row['no']; ?>" class="btn btn-success">Ubah</a> &nbsp;&nbsp; <a href="hapus.php?no=<?php echo $row['no']; ?>" class="btn btn-outline-danger">Hapus</a>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ubahmodal<?php echo $row['no'] ?>">
+                     Ubah
+                  </button>
+                  <a href="hapus.php?no=<?php echo $row['no']; ?>" class="btn btn-danger">Hapus</a>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="ubahModal<?php echo $row['no'] ?>" tabindex="-1">
+                     <div class="modal-dialog">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title">Form Ubah Data Jenis Mobil</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                           </div>
+                           <div class="modal-body">
+                              <form method="post" action="prosesupdate.php">
+                                 <label class="form-group">Kode Mobil</label><br />
+                                 <input class="form-control" readonly name="no" value="<?php echo $row['no']; ?>">
+
+                                 <br>
+
+                                 <label class="form-group">Nama Mobil</label><br />
+                                 <input class="form-control" type="text" name="nama_mobil" value="<?php echo $row['nama_mobil']; ?>">
+
+                                 <br>
+
+                                 <label class="form-group">Harga</label><br />
+                                 <input class="form-control" type="text" name="harga" value="<?php echo $row['harga']; ?>">
+
+                                 <br>
+
+                                 <label class="form-group">Plat Nomor</label><br />
+                                 <input class="form-control" type="text" name="plat_nomor" value="<?php echo $row['plat_nomor']; ?>">
+
+                                 <br>
+
+                                 <label class="form-group">Tahun Mobil</label><br />
+                                 <input class="form-control" type="text" name="tahun_mobil" value="<?php echo $row['tahun_mobil']; ?>">
+
+                                 <br>
+
+                                 <select class="form-select" name="status">
+                                    <option selected value="Tersedia" name="status">Tersedia</option>
+                                    <option value="Tidak Tersedia" name="status">Tidak Tersedia</option>
+                                    <!-- <input type="text" name="status" value="<?php echo $row['status']; ?>"> -->
+                                 </select>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-success">Ubah</button>
+                                 </div>
+                              </form>
+
+                           </div>
+
+                        </div>
+                     </div>
+                  </div>
                </td>
             </tr>
          <?php

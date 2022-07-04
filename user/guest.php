@@ -112,27 +112,56 @@ session_start();
    <br />
    <br />
    <section id="sewamobil">
-      <div class="col-sm-10" style="padding-top: 20px; padding-bottom: 20px; padding-left: 50px;">
-         <h2>Sewa mobil</h2>
+      <div style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
+         <form action="guest.php" method="get">
+            <label>Cari :</label>
+            <input type="text" name="cari" autocomplete="off">
+            <input type="submit" value="Cari">
+         </form>
+
+         <?php
+         if (isset($_GET['cari'])) {
+            $cari = $_GET['cari'];
+            echo "<b>Hasil pencarian : " . $cari . "</b>";
+         }
+         ?>
+      </div>
+      <div class="col-sm-11" style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
+         <h2>Jenis Mobil</h2>
          <table class="table table-striped table-hover dtabel">
             <tr>
                <th>KODE MOBIL</th>
                <th>NAMA MOBIL</th>
                <th>HARGA PENYEWAAN</th>
+               <th>PLAT NOMOR</th>
                <th>TAHUN MOBIL</th>
+               <th>STATUS</th>
                <th>AKSI</th>
             </tr>
             <?php
-            $list = mysqli_query($koneksi, "select * from jenis_mobil");
-            while ($row = mysqli_fetch_array($list)) {
+            if (empty($mobil)) {
+            }
+            ?>
+
+            <?php
+            if (isset($_GET['cari'])) {
+               $cari = $_GET['cari'];
+               $query = mysqli_query($koneksi, "select * from jenis_mobil where nama_mobil like '%" . $cari . "%'");
+            } else {
+               $query = mysqli_query($koneksi, "select * from jenis_mobil ");
+            }
+            $i = 1;
+            while ($row = mysqli_fetch_array($query)) {
             ?>
                <tr>
                   <td><?php echo $row['no']; ?></td>
                   <td><?php echo $row['nama_mobil']; ?></td>
                   <td><?php echo number_format($row['harga']); ?></td>
+                  <td><?php echo $row['plat_nomor']; ?></td>
                   <td><?php echo $row['tahun_mobil']; ?></td>
+                  <td><?php echo $row['status']; ?></td>
                   <td>
-                     <a href="" class="btn btn-success">Sewa</a>
+                     <a href="sewa.php?no=<?php echo $row['no']; ?>" class="btn btn-success">Sewa</a>
                   </td>
                </tr>
             <?php
