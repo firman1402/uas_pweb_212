@@ -33,14 +33,17 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                     <a class="nav-link active" aria-current="page" href="#halamanawal" rel="nofollow">Halaman Awal</a>
+                     <a class="nav-link active" aria-current="page" href="#halamanawal">Halaman Awal</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#spesifikasimobil" rel="nofollow">Spesifikasi Mobil</a>
+                     <a class="nav-link" href="#spesifikasimobil">Spesifikasi Mobil</a>
                   </li>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#sewamobil" rel="nofollow">Sewa mobil</a>
+                     <a class="nav-link" href="#sewamobil">Sewa mobil</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#tentang">Tentang Kami</a>
                   </li>
                </ul>
                <div class="dropdown">
@@ -54,6 +57,11 @@ session_start();
                </form>
             </div>
          </div>
+         <style>
+            section {
+               background: lightskyblue;
+            }
+         </style>
       </nav>
    </section>
    <div style="padding-top:20px">
@@ -62,55 +70,62 @@ session_start();
       </center>
    </div>
    <section>
-      <div class="ms-5 mt-5">
-         <h1>Rental Mobilel</h1>
-         <h4><strong>Baskoro Rent Car</strong> | 0813-3106-1873 | Lepas Kunci | Nikmati Perjalanan Liburan bersama kami.</h4>
-         <p>Tarif Harga Sewa Murah, Armada Lengkap dan Bersih, Transportasi Aman dan Nyaman.</p>
-         <a class="" href="tel:+6281331061873" data-icon="">TELP : 0813-3106-1873</a>
-         <div style="align: justify;">
-            <img height="250" src="../asset/mobil3.png" alt="gambar mobil" style="float: right; margin: -210px 120px 0px 0px;" width="250" />
+      <div class="container">
+         <div class="row">
+            <div class="col-7">
+               <div class="ms-5 mt-5">
+                  <h1>Rental Mobilel</h1>
+                  <h4><strong>Baskoro Rent Car</strong> | 0816-7832-1234 | Lepas Kunci | Nikmati Perjalanan Liburan bersama kami.</h4>
+                  <p>Tarif Harga Sewa Murah, Armada Lengkap dan Bersih, Transportasi Aman dan Nyaman.</p>
+                  <a class="" href="tel:+6281678321234" data-icon="">TELP : 0816-7832-1234</a>
+               </div>
+            </div>
+            <div class="col-5  mt-5">
+               <img style="width: 350px;" src="../asset/mobil3.png" alt="gambar mobil" />
+
+            </div>
          </div>
       </div>
+
    </section>
 
-   <br />
-   <br />
    <section id="spesifikasimobil">
-      <div class="col-sm-10" style="padding-top: 20px; padding-bottom: 20px; padding-left: 50px;">
-         <h2>Spesifikasi mobil</h2>
-         <div class="card-group mt-5" style="width: 1000px">
-            <div class="card">
-               <img src="../asset/avanza.jpg" class="card-img-top" alt="...">
-               <div class="card-body">
-                  <h5 class="card-title">Avanza 2019</h5>
-                  <p class="card-text">300.000 / Hari</p>
-                  <p>Avanza tahun 2019 memiliki kelebihan dan kekurangan...</p>
-                  <a href="https://www.ortizaku.com/index.php/Otomotif/review-spesifikasi-harga-kelebihan-dan-kekurangan-avanza-2019" class="btn btn-primary">Baca lebih lanjut..</a>
+      <div class="row justify-content-center ">
+         <div class="col-10">
+            <h2>Spesifikasi mobil</h2>
+            <div class="card-group mt-5 gap-5">
+               <div class="card">
+                  <img src="../asset/avanza.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                     <h5 class="card-title">Avanza 2019</h5>
+                     <p class="card-text">300.000 / Hari</p>
+                     <p>Avanza tahun 2019 memiliki kelebihan dan kekurangan...</p>
+                     <a href="https://www.ortizaku.com/index.php/Otomotif/review-spesifikasi-harga-kelebihan-dan-kekurangan-avanza-2019" class="btn btn-primary">Baca lebih lanjut..</a>
+                  </div>
                </div>
-            </div>
-            <div class="card">
-               <img src="../asset/innova.png" class="card-img-top" alt="...">
-               <div class="card-body">
-                  <h5 class="card-title">Innova 2019</h5>
-                  <p class="card-text">450.000 / Hari</p>
-                  <p>Innova tahun 2019 memiliki kelebihan dan kekurangan...</p>
-                  <a href="https://www.carmudi.co.id/journal/spesifikasi-dan-harga-toyota-kijang-innova-reborn-bekas-di-jakarta/" class="btn btn-primary">Baca lebih lanjut..</a>
+               <div class="card">
+                  <img src="../asset/innova.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                     <h5 class="card-title">Innova 2019</h5>
+                     <p class="card-text">450.000 / Hari</p>
+                     <p>Innova tahun 2019 memiliki kelebihan dan kekurangan...</p>
+                     <a href="https://www.carmudi.co.id/journal/spesifikasi-dan-harga-toyota-kijang-innova-reborn-bekas-di-jakarta/" class="btn btn-primary">Baca lebih lanjut..</a>
+                  </div>
                </div>
-            </div>
-            <div class="card">
-               <img src="../asset/xenia.png" class="card-img-top" alt="...">
-               <div class="card-body">
-                  <h5 class="card-title">Xenia 2019</h5>
-                  <p class="card-text">250.000 / Hari</p>
-                  <p>Xenia tahun 2019 memiliki kelebihan dan kekurangan...</p>
-                  <a href="https://www.semisena.com/mobil/daihatsu-xenia" class="btn btn-primary">Baca lebih lanjut..</a>
+               <div class="card">
+                  <img src="../asset/xenia.png" class="card-img-top" alt="...">
+                  <div class="card-body">
+                     <h5 class="card-title">Xenia 2019</h5>
+                     <p class="card-text">250.000 / Hari</p>
+                     <p>Xenia tahun 2019 memiliki kelebihan dan kekurangan...</p>
+                     <a href="https://www.semisena.com/mobil/daihatsu-xenia" class="btn btn-primary">Baca lebih lanjut..</a>
+                  </div>
                </div>
             </div>
          </div>
       </div>
+
    </section>
-   <br />
-   <br />
    <section id="sewamobil">
       <div style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
          <form action="guest.php" method="get">
@@ -126,7 +141,7 @@ session_start();
          }
          ?>
       </div>
-      <div class="col-sm-11" style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
+      <div class="col-sm-11" style="padding-bottom: 20px; padding-left: 40px;">
          <h2>Jenis Mobil</h2>
          <table class="table table-striped table-hover dtabel">
             <tr>
@@ -170,6 +185,39 @@ session_start();
          </table>
       </div>
    </section>
+   <br />
+   <br />
+   <section id="tentang">
+      <div style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
+         <center>
+            <h1>Tentang Kami</h1>
+            <h3>Aplikasi tentang penyewaan mobil yang berada di sekitaran surabaya dan sekitarnya</h3>
+            <h4>berminat hubungi nomor<strong> 0816-7832-1234</strong></h4>
+         </center>
+
+         <br />
+         <h2 style="text-align:center">Our Team</h2>
+         <div class="container">
+            <div class="row">
+               <div class="col">
+                  <img src="../asset/DSC_4086.jpg" class="card-img-top" alt="...">
+                  <h5 class="card-title">Akbar Bintang Izzulhaq</h5>
+                  <p class="card-text">NIM 20410100055</p>
+                  <a href="https://www.instagram.com/akbarrroi/" class="btn btn-primary">@Akbarrroi</a>
+               </div>
+               <div class="col">
+               </div>
+               <div class="col">
+                  <img src="../asset/20410100061.jpg" class="card-img-top" alt="...">
+                  <h5 class="card-title">Dzikri Firman Rabani</h5>
+                  <p class="card-text">NIM 20410100061</p>
+                  <a href="https://www.instagram.com/man.firman__/" class="btn btn-primary">@man.firman__</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
 
    <footer class="bg-light text-center text-lg-start mt-5">
       <!-- Copyright -->

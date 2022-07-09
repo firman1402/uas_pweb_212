@@ -78,6 +78,7 @@ $kodePinjam = $huruf . sprintf("%03s", $urutan);
             <td>
                <input type="submit" value="Simpan" class="btn btn-success" name="btnSimpan">
                <input type="reset" value="Batal" class="btn btn-danger" name="btnBatal">
+               <a type="button" href="guest.php">Kembali</a>
             </td>
          </tr>
       </table>
