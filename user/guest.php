@@ -58,8 +58,8 @@ session_start();
             </div>
          </div>
          <style>
-            section {
-               background: lightskyblue;
+            body {
+               background: paleturquoise;
             }
          </style>
       </nav>
@@ -73,7 +73,7 @@ session_start();
       <div class="container">
          <div class="row">
             <div class="col-7">
-               <div class="ms-5 mt-5">
+               <div class="ms-3 mt-5">
                   <h1>Rental Mobilel</h1>
                   <h4><strong>Baskoro Rent Car</strong> | 0816-7832-1234 | Lepas Kunci | Nikmati Perjalanan Liburan bersama kami.</h4>
                   <p>Tarif Harga Sewa Murah, Armada Lengkap dan Bersih, Transportasi Aman dan Nyaman.</p>
@@ -127,7 +127,7 @@ session_start();
 
    </section>
    <section id="sewamobil">
-      <div style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
+      <div style="padding-top: 20px; padding-bottom: 20px; padding-left: 120px;">
          <form action="guest.php" method="get">
             <label>Cari :</label>
             <input type="text" name="cari" autocomplete="off">
@@ -141,7 +141,7 @@ session_start();
          }
          ?>
       </div>
-      <div class="col-sm-11" style="padding-bottom: 20px; padding-left: 40px;">
+      <div class="col-sm-11" style="padding-top: 20px; padding-bottom: 20px; padding-left: 120px;">
          <h2>Jenis Mobil</h2>
          <table class="table table-striped table-hover dtabel">
             <tr>
@@ -159,6 +159,13 @@ session_start();
             ?>
 
             <?php
+            $query = mysqli_query($koneksi, "select max(kode_pinjam) as kodeTerbesar from penyewaan");
+            $data = mysqli_fetch_array($query);
+            $kdPinjam = $data['kodeTerbesar'];
+            $urutan = (int) substr($kdPinjam, 3, 3);
+            $urutan++;
+            $huruf = "PJ";
+            $kdPinjam = $huruf . sprintf("%03s", $urutan);
             if (isset($_GET['cari'])) {
                $cari = $_GET['cari'];
                $query = mysqli_query($koneksi, "select * from jenis_mobil where nama_mobil like '%" . $cari . "%'");
@@ -176,17 +183,99 @@ session_start();
                   <td><?php echo $row['tahun_mobil']; ?></td>
                   <td><?php echo $row['status']; ?></td>
                   <td>
-                     <a href="sewa.php?no=<?php echo $row['no']; ?>" class="btn btn-success">Sewa</a>
+                     <?php if ($row['status'] != 'Tidak Tersedia') : ?>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSewa<?php echo $row['no']; ?>">
+                           Sewa
+                        </button>
+                     <?php else : ?>
+                        <button type="button" class="btn btn-secondary">
+                           Sewa
+                        </button>
+                     <?php endif; ?>
                   </td>
                </tr>
+               <!-- Modal -->
+               <div class="modal fade" id="modalSewa<?php echo $row['no']; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h5 class="modal-title" id="staticBackdropLabel">Form Penyewaan Mobil</h5>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           <form method="post" action="pinjam.php">
+                              <label class="form-group">Kode Pinjam</label><br />
+                              <input class="form-control" type="text" name="kd_pinjam" required value="<?php echo $kdPinjam ?>" readonly>
+
+                              <br>
+                              <label class="form-group">Nama Pinjam</label><br />
+                              <input class="form-control" type="text" name="nama_peminjam" required value="<?php echo  $_SESSION['username']; ?>" readonly>
+
+                              <br>
+                              <label class="form-group">Nomer Telepon</label><br />
+                              <input class="form-control" type="text" name="nomer_telepon" required value="" autocomplete="off">
+
+                              <br>
+                              <label class="form-group">Tanggal Pinjam</label><br />
+                              <input class="form-control" type="date" name="tgl_pinjam" required value="">
+
+                              <br>
+                              <label class="form-group">Lama Pinjam</label><br />
+                              <div class="row">
+                                 <div class="col-4">
+                                    <input class="form-control lama_pinjam" data-item="<?= $row['no']; ?>" id="lama" type="number" name="lama" required>
+                                 </div>
+                                 <div class="col-2">
+                                    <h3 class="text-start">hari</h3>
+                                 </div>
+                              </div>
+
+                              <br>
+                              <label class="form-group">Kode Mobil</label><br />
+                              <input class="form-control" type="text" name="kd_mobil" required value="<?php echo $row['no']; ?>" readonly>
+
+                              <br>
+                              <label class="form-group">Nama Mobil</label><br />
+                              <input class="form-control" type="text" name="nm_mobil" required value="<?php echo $row['nama_mobil']; ?>" readonly>
+
+                              <br>
+
+                              <label class="form-group">Harga Sewa Mobil</label><br />
+                              <input class="form-control harga_sewa" data-item="<?= $row['no']; ?>" type="text" id="hargaSewa" name="harga_sewa" required value="<?php echo $row['harga']; ?>" readonly>
+
+                              <br>
+
+                              <label class="form-group">Total Harga Sewa</label><br />
+                              <input class="form-control total_harga" data-item="<?= $row['no']; ?>" type="text" name="totalHarga" id="totalHarga" required value="" readonly>
+
+
+                              <br>
+
+                              <label class="form-group">Pilih Jenis Pembayaran</label><br />
+                              <select class="form-select" aria-label="Default select example">
+                                 <option selected>Bayar Tunai</option>
+                                 <option value="1">Bayar E - Wallet/M-Banking</option>
+                              </select>
+
+                              <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                 <button type="submit" class="btn btn-success">Bayar</button>
+                              </div>
+                           </form>
+                        </div>
+
+
+                     </div>
+                  </div>
+               </div>
             <?php
+
             }
             ?>
          </table>
+
       </div>
    </section>
-   <br />
-   <br />
    <section id="tentang">
       <div style="padding-top: 20px; padding-bottom: 20px; padding-left: 40px;">
          <center>
@@ -196,7 +285,7 @@ session_start();
          </center>
 
          <br />
-         <h2 style="text-align:center">Our Team</h2>
+         <h2 style="text-align:center">Daftar Anggota</h2>
          <div class="container">
             <div class="row">
                <div class="col">
@@ -218,7 +307,6 @@ session_start();
       </div>
    </section>
 
-
    <footer class="bg-light text-center text-lg-start mt-5">
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
@@ -227,6 +315,21 @@ session_start();
       </div>
       <!-- Copyright -->
    </footer>
+
+   <script>
+      const allDate = document.querySelectorAll('.lama_pinjam');
+
+      allDate.forEach(function(event) {
+         event.addEventListener('change', function(e) {
+            const item = e.target.getAttribute('data-item');
+            const hargaSewa = document.querySelector(`.harga_sewa[data-item=${item}]`).value;
+            const totalHarga = document.querySelector(`.total_harga[data-item=${item}]`);
+
+            totalHarga.value = hargaSewa * e.target.value;
+            console.log(item, hargaSewa);
+         });
+      });
+   </script>
 
 </body>
 

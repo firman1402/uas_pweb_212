@@ -11,15 +11,6 @@
       }
    }
 </script>
-<script language="Javascript">
-   function deletecar() {
-      if (confirm('Anda yakin akan menghapus data?')) {
-         return true;
-      } else {
-         return false;
-      }
-   }
-</script>
 <?php
 include 'Koneksi.php';
 ?>
@@ -39,7 +30,7 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
    <?php session_start(); ?>
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-         <a class="navbar-brand" href="#">Penyewaan Mobiel</a>
+         <a class="navbar-brand" href="Penyewaan.php">Penyewaan Mobiel</a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>
@@ -51,9 +42,6 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                <li class="nav-item">
                   <a class="nav-link" href="jenis_mobil.php">Jenis Mobil</a>
                </li>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="#">Penyewaan</a>
                </li>
             </ul>
             <div class="dropdown">
@@ -189,7 +177,7 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ubahmodal<?php echo $row['no'] ?>">
                      Ubah
                   </button>
-                  <a href="hapus.php?no=<?php echo $row['no']; ?>" class="btn btn-danger" onClick="return deletecar();">Hapus</a>
+                  <a href="hapus.php?no=<?php echo $row['no']; ?>" class="btn btn-danger">Hapus</a>
 
                   <!-- Modal -->
                   <div class="modal fade" id="ubahModal<?php echo $row['no'] ?>" tabindex="-1">

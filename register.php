@@ -107,8 +107,7 @@ function cek_nama($username, $koneksi)
                <div class="form-group">
                   <span><i class="fa fa-cog fa-fw"></i></span> <select name="hak_akses" required>
                      <option value="">Hak akses</option>
-                     <option value="1">user</option>
-                     <option value="2">admin</option>
+                     <option value="user">user</option>
                   </select>
                </div>
                <button type="submit" name="submit" class="btn btn-primary btn-block">Register</button>

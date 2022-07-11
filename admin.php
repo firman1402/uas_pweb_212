@@ -37,10 +37,6 @@ session_start();
                <li class="nav-item">
                   <a class="nav-link" href="jenis_mobil.php">Jenis Mobil</a>
                </li>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="#">Penyewaan</a>
-               </li>
             </ul>
             <div class="dropdown">
                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -84,6 +80,48 @@ session_start();
                <td><?php echo $row['hak_akses']; ?></td>
                <td>
                   <a href="hapususer.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">HAPUS</a>
+               </td>
+            </tr>
+         <?php
+         }
+         ?>
+      </table>
+   </div>
+
+   <div class="col-sm-10" style="padding-top: 20px; padding-bottom: 20px; padding-left: 50px;">
+      <h2>Data Sewa</h2>
+      <table class="table table-striped table-hover dtabel">
+         <tr>
+            <th>KODE PINJAM</th>
+            <th>NAMA PEMINJAM</th>
+            <th>NOMER TELEPON</th>
+            <th>TANGGAL PINJAM</th>
+            <th>LAMA PINJAM</th>
+            <th>KODE MOBIL</th>
+            <th>NAMA MOBIL</th>
+            <th>HARGA SEWA MOBIL</th>
+            <th>TOTAL HARGA SEWA</th>
+            <th>STATUS</th>
+            <th>AKSI</th>
+
+         </tr>
+         <?php
+         $list = mysqli_query($koneksi, "select * from penyewaan");
+         while ($row = mysqli_fetch_array($list)) {
+         ?>
+            <tr>
+               <td><?php echo $row['kode_pinjam']; ?></td>
+               <td><?php echo $row['nama_peminjam']; ?></td>
+               <td><?php echo $row['no_telpon']; ?></td>
+               <td><?php echo $row['tanggal_pinjam']; ?></td>
+               <td><?php echo $row['lama_pinjam']; ?></td>
+               <td><?php echo $row['kode_mobil']; ?></td>
+               <td><?php echo $row['nama_mobil']; ?></td>
+               <td><?php echo number_format($row['harga_mobil']); ?></td>
+               <td><?php echo number_format($row['total_harga_sewa']); ?></td>
+               <td><?php echo $row['status']; ?></td>
+               <td>
+                  <a href="kembalikan.php?kode_mobil=<?= $row['kode_mobil']; ?>" class="btn btn-success">Sudah Dikembalikan</a>
                </td>
             </tr>
          <?php
