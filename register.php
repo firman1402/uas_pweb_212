@@ -29,8 +29,10 @@ if (isset($_POST['submit'])) {
             //jika insert data berhasil maka akan diredirect ke halaman index.php serta menyimpan data username ke session
             if ($result) {
                $_SESSION['username'] = $username;
-
-               header('Location: index.php');
+               echo '<script type="text/javascript">
+                     alert("Register Berhasil!");
+                     window.location.href = "index.php";
+                     </script>';
 
                //jika gagal maka akan menampilkan pesan error
             } else {
