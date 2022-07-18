@@ -142,7 +142,7 @@ session_start();
          ?>
       </div>
       <div class="col-sm-11" style="padding-top: 20px; padding-bottom: 20px; padding-left: 120px;">
-         <h2>Jenis Mobil</h2>
+         <h2>Pilihan Mobil</h2>
          <table class="table table-striped table-hover dtabel">
             <tr>
                <th>KODE MOBIL</th>
