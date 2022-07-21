@@ -6,35 +6,24 @@ session_start();
 
 $error = '';
 $validate = '';
-//mengecek apakah form registrasi di submit atau tidak
 if (isset($_POST['submit'])) {
-   // menghilangkan backshlases
    $username = stripslashes($_POST['username']);
-   //cara sederhana mengamankan dari sql injection
    $password = stripslashes($_POST['password']);
    $repass   = stripslashes($_POST['repassword']);
    $no_telp   = $_POST['no_telp'];
    $hak_akses = $_POST['hak_akses'];
-   //cek apakah nilai yang diinputkan pada form ada yang kosong atau tidak
    if (!empty(trim($username)) && !empty(trim($password)) && !empty(trim($repass))) {
-      //mengecek apakah password yang diinputkan sama dengan re-password yang diinputkan kembali
       if ($password == $repass) {
-         //memanggil method cek_nama untuk mengecek apakah user sudah terdaftar atau belum
          if (cek_nama($name, $koneksi) == 0) {
-            //hashing password sebelum disimpan didatabase
             $pass  = $password;
-            //insert data ke database
             $query = "INSERT INTO guest (username, password, no_telp,hak_akses ) VALUES ('$username','$pass','$no_telp','$hak_akses')";
             $result   = mysqli_query($koneksi, $query);
-            //jika insert data berhasil maka akan diredirect ke halaman index.php serta menyimpan data username ke session
             if ($result) {
                $_SESSION['username'] = $username;
                echo '<script type="text/javascript">
                      alert("Register Berhasil!");
                      window.location.href = "index.php";
                      </script>';
-
-               //jika gagal maka akan menampilkan pesan error
             } else {
                $error =  'Register User Gagal !!';
             }
@@ -48,7 +37,6 @@ if (isset($_POST['submit'])) {
       $error =  'Data tidak boleh kosong !!';
    }
 }
-//fungsi untuk mengecek username apakah sudah terdaftar atau belum
 function cek_nama($username, $koneksi)
 {
    $nama = mysqli_real_escape_string($koneksi, $username);
@@ -76,7 +64,6 @@ function cek_nama($username, $koneksi)
 
 <body>
    <section class="container-fluid mb-4">
-      <!-- justify-content-center untuk mengatur posisi form agar berada di tengah-tengah -->
       <section class="row justify-content-center">
          <section class="col-12 col-sm-6 col-md-4">
             <form class="form-container" action="register.php" method="POST">
