@@ -1,7 +1,5 @@
 <?php
-//menyertakan file program koneksi.php pada register
 include('koneksi.php');
-//inisialisasi session
 session_start();
 
 $error = '';
