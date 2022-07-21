@@ -11,6 +11,15 @@
       }
    }
 </script>
+<script language="Javascript">
+   function deletecar() {
+      if (confirm('Apakah anda yakin akan menghapus?')) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+</script>
 <?php
 include 'Koneksi.php';
 ?>
@@ -177,7 +186,7 @@ $kodeMobil = $huruf . sprintf("%03s", $urutan);
                   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ubahmodal<?php echo $row['no'] ?>">
                      Ubah
                   </button>
-                  <a href="hapus.php?no=<?php echo $row['no']; ?>" class="btn btn-danger">Hapus</a>
+                  <a href="hapus.php?no=<?php echo $row['no']; ?>" class="btn btn-danger" onClick="return deletecar();">Hapus</a>
 
                   <!-- Modal -->
                   <div class="modal fade" id="ubahModal<?php echo $row['no'] ?>" tabindex="-1">

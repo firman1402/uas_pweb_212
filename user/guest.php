@@ -253,8 +253,8 @@ session_start();
 
                               <label class="form-group">Pilih Jenis Pembayaran</label><br />
                               <select class="form-select" aria-label="Default select example">
-                                 <option selected>Bayar Tunai</option>
-                                 <option value="1">Bayar E - Wallet/M-Banking</option>
+                                 <option value="1">Bayar Tunai</option>
+                                 <option value="2">Bayar E - Wallet/M-Banking</option>
                               </select>
 
                               <div class="modal-footer">

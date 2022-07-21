@@ -17,6 +17,16 @@ session_start();
    }
 </script>
 
+<script language="Javascript">
+   function deleteuser() {
+      if (confirm('Apakah anda yakin akan menghapus?')) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+</script>
+
 <head>
    <title>Form admin</title>
 </head>
@@ -79,7 +89,7 @@ session_start();
                <td><?php echo $row['no_telp']; ?></td>
                <td><?php echo $row['hak_akses']; ?></td>
                <td>
-                  <a href="hapususer.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">HAPUS</a>
+                  <a href="hapususer.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" onClick="return deleteuser();">HAPUS</a>
                </td>
             </tr>
          <?php
